@@ -9,6 +9,13 @@ export default function Auth() {
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
 
+  const getRedirectUrl = () => {
+    if (typeof window === 'undefined') return undefined
+    return window.location.hostname === 'localhost'
+      ? 'http://localhost:3000'
+      : 'https://moghalsaif.github.io/psychotherapist.ai'
+  }
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
@@ -18,7 +25,7 @@ export default function Auth() {
       const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
-          emailRedirectTo: 'https://moghalsaif.github.io/psychotherapist.ai'
+          emailRedirectTo: getRedirectUrl()
         }
       })
 
