@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../lib/supabaseClient'
-import { Button } from "../src/components/ui/button"
-import { Textarea } from "../src/components/ui/textarea"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../src/components/ui/card"
+import { Button } from "./ui/button"
+import { Textarea } from "./ui/textarea"
 import { LogOut } from 'lucide-react'
 import Image from 'next/image'
 
@@ -460,8 +459,8 @@ export default function TherapistMatcher({ userProfile }: { userProfile: UserPro
                         <div>
                           <h5 className="font-semibold text-gray-800 mb-2">Specialties</h5>
                           <div className="flex flex-wrap gap-2">
-                            {therapist.specialties?.map((specialty, i) => (
-                              <span key={i} className="px-3 py-1 bg-gray-50 text-gray-600 rounded-full text-sm">
+                            {therapist.specialties?.map((specialty) => (
+                              <span key={specialty} className="px-3 py-1 bg-gray-50 text-gray-600 rounded-full text-sm">
                                 {specialty}
                               </span>
                             ))}
@@ -474,8 +473,8 @@ export default function TherapistMatcher({ userProfile }: { userProfile: UserPro
                         <div>
                           <h5 className="font-semibold text-gray-800 mb-2">Languages</h5>
                           <div className="flex flex-wrap gap-2">
-                            {therapist.languages?.map((language, i) => (
-                              <span key={i} className="px-3 py-1 bg-gray-50 text-gray-600 rounded-full text-sm">
+                            {therapist.languages?.map((language) => (
+                              <span key={language} className="px-3 py-1 bg-gray-50 text-gray-600 rounded-full text-sm">
                                 {language}
                               </span>
                             ))}
@@ -484,8 +483,8 @@ export default function TherapistMatcher({ userProfile }: { userProfile: UserPro
                         <div>
                           <h5 className="font-semibold text-gray-800 mb-2">Session Formats</h5>
                           <div className="flex flex-wrap gap-2">
-                            {therapist.session_formats?.map((format, i) => (
-                              <span key={i} className="px-3 py-1 bg-gray-50 text-gray-600 rounded-full text-sm">
+                            {therapist.session_formats?.map((format) => (
+                              <span key={format} className="px-3 py-1 bg-gray-50 text-gray-600 rounded-full text-sm">
                                 {format}
                               </span>
                             ))}
@@ -497,8 +496,8 @@ export default function TherapistMatcher({ userProfile }: { userProfile: UserPro
                           <div>
                             <h5 className="font-semibold text-gray-800 mb-2">Insurance Accepted</h5>
                             <div className="flex flex-wrap gap-2">
-                              {therapist.insurance_accepted?.map((insurance, i) => (
-                                <span key={i} className="px-3 py-1 bg-gray-50 text-gray-600 rounded-full text-sm">
+                              {therapist.insurance_accepted?.map((insurance) => (
+                                <span key={insurance} className="px-3 py-1 bg-gray-50 text-gray-600 rounded-full text-sm">
                                   {insurance}
                                 </span>
                               ))}
