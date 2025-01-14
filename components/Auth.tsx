@@ -18,7 +18,7 @@ export default function Auth() {
       const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
-          emailRedirectTo: window.location.origin
+          emailRedirectTo: 'https://moghalsaif.github.io/psychotherapist.ai'
         }
       })
 
