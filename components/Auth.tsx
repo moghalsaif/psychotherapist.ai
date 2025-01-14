@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { supabase } from '../lib/supabaseClient'
-import { Button } from "../src/components/ui/button"
-import { Input } from "../src/components/ui/input"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../src/components/ui/card"
+import { Card, CardContent } from "./ui/card"
+import { Input } from "./ui/input"
+import { Button } from "./ui/button"
 
 export default function Auth() {
   const [loading, setLoading] = useState(false)

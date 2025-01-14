@@ -349,10 +349,12 @@ export default function TherapistMatcher({ userProfile }: { userProfile: UserPro
                       <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 h-full">
                         <div className="w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden">
                           {therapist?.photo_url ? (
-                            <img 
+                            <Image 
                               src={therapist.photo_url} 
-                              alt={therapist.name}
-                              className="w-full h-full object-cover"
+                              alt={`${therapist.name}'s profile picture`}
+                              width={100}
+                              height={100}
+                              className="w-24 h-24 rounded-full object-cover"
                             />
                           ) : (
                             <div className="w-full h-full bg-gradient-to-r from-blue-100 to-purple-100 flex items-center justify-center">
@@ -419,10 +421,12 @@ export default function TherapistMatcher({ userProfile }: { userProfile: UserPro
                   <div className="flex items-start gap-6">
                     <div className="flex-shrink-0">
                       {therapist.photo_url ? (
-                        <img 
+                        <Image 
                           src={therapist.photo_url} 
-                          alt={therapist.name}
-                          className="w-24 h-24 rounded-2xl object-cover"
+                          alt={`${therapist.name}'s profile picture`}
+                          width={100}
+                          height={100}
+                          className="w-24 h-24 rounded-full object-cover"
                         />
                       ) : (
                         <div className="w-24 h-24 rounded-2xl bg-gradient-to-r from-blue-100 to-purple-100 flex items-center justify-center">
