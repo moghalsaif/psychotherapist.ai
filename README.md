@@ -2,6 +2,8 @@
 
 An AI-powered therapist matching platform that connects individuals with mental health professionals based on their unique needs and preferences.
 
+🔗 **[Visit the App](https://moghalsaif.github.io/psychotherapist.ai/)**
+
 ## Features
 
 - 🧠 **Personalized Matching**: Get matched with therapists based on your mental health needs, preferences, and location
