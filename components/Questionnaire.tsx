@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { supabase } from '../lib/supabaseClient'
-import { Button } from "../src/components/ui/button"
-import { Input } from "../src/components/ui/input"
-import { Checkbox } from "../src/components/ui/checkbox"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../src/components/ui/select"
-import { Textarea } from "../src/components/ui/textarea"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../src/components/ui/card"
+import { supabase, isDemoMode } from '../lib/supabaseClient'
+import { Button } from "./ui/button"
+import { Input } from "./ui/input"
+import { Checkbox } from "./ui/checkbox"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
+import { Textarea } from "./ui/textarea"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
 import type { Session } from '@supabase/supabase-js'
 
 interface UserProfile {
@@ -141,6 +141,15 @@ export default function Questionnaire({ session, onProfileComplete }: Questionna
 
       console.log('Submitting profile data:', transformedData)
 
+      if (isDemoMode) {
+        // In demo mode, save to localStorage instead of Supabase
+        console.log('Demo mode: Saving profile to localStorage')
+        localStorage.setItem('demo-profile', JSON.stringify(transformedData))
+        onProfileComplete(transformedData)
+        return
+      }
+
+      // Real Supabase flow
       const { error: upsertError } = await supabase
         .from('profiles')
         .upsert(transformedData)

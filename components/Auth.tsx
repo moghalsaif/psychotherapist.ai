@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { supabase } from '../lib/supabaseClient'
 import { Card, CardContent } from "./ui/card"
 import { Input } from "./ui/input"
 import { Button } from "./ui/button"
@@ -9,32 +8,45 @@ export default function Auth() {
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
 
-  const getRedirectUrl = () => {
-    if (typeof window === 'undefined') return undefined
-    return window.location.hostname === 'localhost'
-      ? 'http://localhost:3000'
-      : 'https://moghalsaif.github.io/psychotherapist.ai'
-  }
-
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setMessage(null)
     
     try {
-      const { error } = await supabase.auth.signInWithOtp({
-        email,
-        options: {
-          emailRedirectTo: getRedirectUrl()
-        }
-      })
-
-      if (error) throw error
+      // Demo mode simulation
+      console.log('Demo mode: Simulating login success')
+      
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 1500))
+      
+      // Create a demo session
+      const demoUser = {
+        id: 'demo-user-123',
+        email: email,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+        app_metadata: {},
+        user_metadata: { email },
+        aud: 'authenticated',
+        role: 'authenticated'
+      }
+      
+      // Save demo session
+      localStorage.setItem('demo-session', JSON.stringify({
+        user: demoUser,
+        access_token: 'demo-token',
+        expires_at: Date.now() + 3600000 // 1 hour from now
+      }))
       
       setMessage({
         type: 'success',
-        text: 'Check your email for the login link!'
+        text: 'Demo mode: Login successful! Redirecting...'
       })
+      
+      // Reload the page to trigger auth state check
+      setTimeout(() => window.location.reload(), 2000)
+      
     } catch (error: any) {
       setMessage({
         type: 'error',
@@ -48,6 +60,9 @@ export default function Auth() {
   return (
     <Card className="bg-transparent border-0 shadow-none">
       <CardContent>
+        <div className="mb-4 p-3 rounded-xl bg-blue-50 border border-blue-200 text-blue-700 text-sm">
+          <strong>Demo Mode:</strong> Enter any email to try the app with demo data
+        </div>
         <form onSubmit={handleLogin} className="space-y-4">
           <div className="space-y-2">
             <Input
@@ -67,7 +82,7 @@ export default function Auth() {
             {loading ? (
               <div className="flex items-center justify-center space-x-2">
                 <div className="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-white"></div>
-                <span>Sending magic link...</span>
+                <span>Logging in...</span>
               </div>
             ) : (
               'Get Started Free'

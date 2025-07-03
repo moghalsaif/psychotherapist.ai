@@ -1,8 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Temporarily disable basePath for local development  
+  // basePath: '/psychotherapist.ai',
   output: 'export',
-  basePath: '/psychotherapist.ai',
   images: {
     unoptimized: true,
   },
